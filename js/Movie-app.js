@@ -1,19 +1,20 @@
 "use strict"
 
-const movieList = document.getElementById("movies");
-const movieForm = document.querySelector("form");
+let glitchMovieData = $.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(function(data){
 
-fetch("/movies")
-    .then((response) =>{ return response.json()})
-    .then((jsonData) =>{ return jsonData.results})
-    .then((results)=>results.forEach(result=>console.log(result.movies)));
-console.log(glitchUrl)
+    $(document).ready(function () {
+        setTimeout(function () {
+            let html = "";
 
-const glitchUrl = fetch("https://glitch.com/edit/#!/gelatinous-careful-technosaurus/movies")
+            for (let i = 0; i < data.length; i++) {
+                html += "<li>" + data[i].title + "</li>";
+            }
+            $("#movies").html(html);
+        }, 2000)
+    })
+    // console.log(data);
+});
+
+console.log(glitchMovieData);
 
 
-$(document).ready(function (){
-    setTimeout(function (){
-        $("#movies").html("Welcome to our Movie App!")
-    },2000)
-})
