@@ -8,17 +8,32 @@
 
 <haeder>
     <div>
-        <h1>Movie App</h1>
+        <h1>Welcome to our Movie App</h1>
     </div>
 </haeder>
 
 <main>
+
+    <section class="movies">
+        <ul id="movies">
+
+        </ul>
+    </section>
+
+
     <form>
-        <input>
+        <label>
+            New Movie
+            <input name="movie" type="text" maxlength="100" required placeholder="Movies!">
+        </label>
+        <button type="submit" id="submit-movie">Add Movie</button>
     </form>
 
 
 </main>
-    <script src="js/Movie-app.js"></script>
+<!--Jquery-->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<!--Javascript-->
+<script src="js/Movie-app.js"></script>
 </body>
 </html>
