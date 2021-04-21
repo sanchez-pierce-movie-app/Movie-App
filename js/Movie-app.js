@@ -8,11 +8,11 @@
 
             for (let i = 0; i < data.length; i++) {
                 html += "<li>" + "Title: " + data[i].title + "</li>";
-                html += "<li>" + "Year Realesed: " + data[i].year + "</li>";
-                html += "<li>" + "Directed By: " + data[i].director + "</li>";
-                html += "<li>" + "Staring: " + data[i].actors + "</li>";
-                html += "<li>" + "Genre: " + data[i].genre + "</li>";
                 html += "<li>" + "Ratings: " + data[i].rating + "</li>";
+                // html += "<li>" + "Year Released: " + data[i].year + "</li>";
+                // html += "<li>" + "Directed By: " + data[i].director + "</li>";
+                // html += "<li>" + "Staring: " + data[i].actors + "</li>";
+                // html += "<li>" + "Genre: " + data[i].genre + "</li>";
             }
             $("#movies").html(html);
         }, 2000)
@@ -27,9 +27,10 @@ $("#submit-movie").click(function (e){
 
 
     let movieInput = $("#movie-input").val();
-
+    let movieRating = $("#rating-input").val();
     const newMovie = {
-        title: movieInput
+        title: movieInput,
+        rating: movieRating
     };
     const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
 
@@ -38,7 +39,7 @@ $("#submit-movie").click(function (e){
         headers: {
             "Content-Type" : "application/json",
         },
-        body: JSON.stringify(newMovie),
+        body: JSON.stringify(newMovie, movieRating),
     };
 
     fetch(url,options)
