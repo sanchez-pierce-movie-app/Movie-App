@@ -8,19 +8,39 @@
 
             for (let i = 0; i < data.length; i++) {
                 html += "<li>" + "Title: " + data[i].title + "</li>";
-                html += "<li>" + "Ratings: " + data[i].rating + "</li>";
+                // html += "<li>" + "Ratings: " + data[i].rating + "</li>";
                 // html += "<li>" + "Year Released: " + data[i].year + "</li>";
                 // html += "<li>" + "Directed By: " + data[i].director + "</li>";
                 // html += "<li>" + "Staring: " + data[i].actors + "</li>";
                 // html += "<li>" + "Genre: " + data[i].genre + "</li>";
             }
             $("#movies").html(html);
-        }, 2000)
+        }, )
     })
-    // console.log(data);
+
+         // //*********************** edit for loop ****************
+         let html = "";
+
+             for (let i = 0; i < data.length; i++) {
+             html += "<option>" + "Title: " + data[i].title + "</option>";
+             }
+
+         $("#edit-movies").html(html);
+
+     //************************* delete for loop ***********************
+     let deleteHtml = "";
+
+     for (let i = 0; i < data.length; i++) {
+         deleteHtml += "<option>" + "Title: " + data[i].title + "</option>";
+     }
+
+     $("#delete-movies").html(html);
+
 
 });
+//********************* post patch delete **********************************
 
+//********************** post **********************
 $("#submit-movie").click(function (e){
     e.preventDefault();
 
@@ -49,9 +69,10 @@ $("#submit-movie").click(function (e){
         .catch(error => console.log(error));
 
     console.log(url);
-})
+});
 
 
+//******************************** PATCH *************************************
 $("#edit-movie").click(function (e){
     e.preventDefault();
 
@@ -59,11 +80,10 @@ $("#edit-movie").click(function (e){
     let movieRating = $("#rating-input").val();
 
     let patchMovie = {
-        id: 11,
         title: movieInput,
         rating: movieRating
     };
-    const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies/11";
+    const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
 
     let options = {
         method: "PATCH",
@@ -79,6 +99,37 @@ $("#edit-movie").click(function (e){
 
     console.log(url);
 })
+
+//**************************** delete **********************************
+$.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(function(data) {
+
+    $("#delete-movie").click(function (e) {
+        e.preventDefault();
+
+        let deleteInput = $("#delete-movie").val();
+
+        const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
+
+        let idLoop = function(){
+            for(let id of idLoop){
+                if(id === deleteInput.id){
+
+                }
+            }
+        }
+
+        let deleteMethod = {
+            method: "DELETE"
+        }
+
+        fetch(url, deleteMethod).then(function (response) {
+            console.log(response);
+        })
+
+    })
+});
+
+
 
 
 
