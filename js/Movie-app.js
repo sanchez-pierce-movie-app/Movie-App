@@ -1,6 +1,8 @@
 "use strict"
 
- $.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(function(data){
+const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
+
+$.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(function (data) {
 
     $(document).ready(function () {
         setTimeout(function () {
@@ -8,42 +10,51 @@
 
             for (let i = 0; i < data.length; i++) {
                 html += "<li>" + "Title: " + data[i].title + "</li>";
-                // html += "<li>" + "Ratings: " + data[i].rating + "</li>";
+                html += "<li>" + data[i].id + "</li>";
+                // html += `<form action='${url + "/" + data[i].id}'>`
+                html += `<button class='delete-movie' type='submit' data-id='${data[i].id}'>Delete</button>`;
+                // html += "</form>"
                 // html += "<li>" + "Year Released: " + data[i].year + "</li>";
                 // html += "<li>" + "Directed By: " + data[i].director + "</li>";
                 // html += "<li>" + "Staring: " + data[i].actors + "</li>";
                 // html += "<li>" + "Genre: " + data[i].genre + "</li>";
             }
             $("#movies").html(html);
-        }, )
+        },)
     })
 
-         // //*********************** edit for loop ****************
-         let html = "";
 
-             for (let i = 0; i < data.length; i++) {
-             html += "<option>" + "Title: " + data[i].title + "</option>";
-             }
+    fetch("https://psychedelic-aromatic-boysenberry.glitch.me/movies").then(response => console.log(response))
 
-         $("#edit-movies").html(html);
 
-     //************************* delete for loop ***********************
-     let deleteHtml = "";
+    // //*********************** edit for loop ****************
+    // let html = "";
+    //
+    //     for (let i = 0; i < data.length; i++) {
+    //     html += "<option>" + "Title: " + data[i].title + "</option>";
+    //     }
+    //
+    // $("#edit-movies").html(html);
 
-     for (let i = 0; i < data.length; i++) {
-         deleteHtml += "<option>" + "Title: " + data[i].title + "</option>";
-     }
-
-     $("#delete-movies").html(html);
+    //************************* delete for loop ***********************
+    // let deleteHtml = "";
+    //
+    // for (let i = 0; i < data.length; i++) {
+    //     deleteHtml += "<option>" + "Title: " + data[i].title + "</option>";
+    // }
+    //
+    // $("#delete-movies").html(html);
 
 
 });
+
+
+
 //********************* post patch delete **********************************
 
 //********************** post **********************
-$("#submit-movie").click(function (e){
+$("#submit-movie").click(function (e) {
     e.preventDefault();
-
 
 
     let movieInput = $("#movie-input").val();
@@ -54,26 +65,24 @@ $("#submit-movie").click(function (e){
         title: movieInput,
         rating: movieRating
     };
-    const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
 
     const options = {
         method: "POST",
         headers: {
-            "Content-Type" : "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(newMovie, movieRating),
     };
 
-    fetch(url,options)
+    fetch(url, options)
         .then(response => console.log(response))
         .catch(error => console.log(error));
 
     console.log(url);
 });
 
-
 //******************************** PATCH *************************************
-$("#edit-movie").click(function (e){
+$("#edit-movie").click(function (e) {
     e.preventDefault();
 
     let movieInput = $("#movie-input").val();
@@ -83,17 +92,17 @@ $("#edit-movie").click(function (e){
         title: movieInput,
         rating: movieRating
     };
-    const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
+
 
     let options = {
-        method: "PATCH",
+        method: "PUT",
         headers: {
-            "Content-Type" : "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(patchMovie),
     };
 
-    fetch(url,options)
+    fetch(url, options)
         .then(response => console.log(response))
         .catch(error => console.log(error));
 
@@ -101,63 +110,30 @@ $("#edit-movie").click(function (e){
 })
 
 //**************************** delete **********************************
-$.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(function(data) {
 
-    $("#delete-movie").click(function (e) {
-        e.preventDefault();
 
-        let deleteInput = $("#delete-movie").val();
+$(document).on("click",'.delete-movie',function (e) {
+e.preventDefault();
 
-        const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
+    let deleteMethod = {
+        method: "DELETE"
+    }
 
-        let idLoop = function(){
-            for(let id of idLoop){
-                if(id === deleteInput.id){
+    let movieId = $(this).attr("data-id");
+    console.log(movieId);
 
-                }
-            }
-        }
-
-        let deleteMethod = {
-            method: "DELETE"
-        }
-
-        fetch(url, deleteMethod).then(function (response) {
-            console.log(response);
-        })
-
+    fetch(url + "/" + movieId, deleteMethod).then(function (response){
+        console.log(response);
     })
-});
+
+})
 
 
 
+//******************************************************************
 
 
-// function setUsername(id, newUsername) {
-//     for (var i = 0; i < jsonObj.length; i++) {
-//         if (jsonObj[i].Id === id) {
-//             jsonObj[i].Username = newUsername;
-//             return;
-//         }
-//     }
-// }
-//
-// // Call as
-// setUsername(3, "Thomas");
-//
-//
-// 5
 
-// $(document).ready(function(){
-//     var jsonObj = ;
-//
-//     $.each(jsonObj,function(i,v){
-//         if (v.Id == 3) {
-//             v.Username = "Thomas";
-//             return false;
-//         }
-//     });
-//
-//     alert("New Username: " + jsonObj.Username);
-//
-// });
+// $(document).on("click",".delete-movie",function () {
+// })
+
