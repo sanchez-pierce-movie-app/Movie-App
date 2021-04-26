@@ -10,7 +10,7 @@ $.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(functio
 
             for (let i = 0; i < data.length; i++) {
                 html += "<li>" + "Title: " + data[i].title + "</li>";
-                html += "<li>" + data[i].id + "</li>";
+                html += "<li>" + data[i].rating + "</li>";
                 // html += `<form action='${url + "/" + data[i].id}'>`
                 html += `<button class='delete-movie' type='submit' data-id='${data[i].id}'>Delete</button>`;
                 // html += "</form>"
@@ -20,8 +20,10 @@ $.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(functio
                 // html += "<li>" + "Genre: " + data[i].genre + "</li>";
             }
             $("#movies").html(html);
-        },)
+            // $("ul li").css("color", "white");
+        }, 1000)
     })
+
 
 
     fetch("https://psychedelic-aromatic-boysenberry.glitch.me/movies").then(response => console.log(response))
@@ -86,7 +88,7 @@ $("#edit-movie").click(function (e) {
     e.preventDefault();
 
     let movieInput = $("#movie-input").val();
-    let movieRating = $("#rating-input").val();
+    let movieRating = $(this).attr("data-id");
 
     let patchMovie = {
         title: movieInput,
@@ -99,7 +101,7 @@ $("#edit-movie").click(function (e) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(patchMovie),
+        body: JSON.stringify(patchMovie, movieRating),
     };
 
     fetch(url, options)
