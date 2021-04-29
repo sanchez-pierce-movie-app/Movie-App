@@ -9,15 +9,14 @@ $.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(functio
             let html = "";
 
             for (let i = 0; i < data.length; i++) {
-                html += "<li>" + "Title: " + data[i].title + "</li>";
-                html += "<li>" + data[i].rating + "</li>";
-                // html += `<form action='${url + "/" + data[i].id}'>`
-                html += `<button class='delete-movie' type='submit' data-id='${data[i].id}'>Delete</button>`;
-                // html += "</form>"
-                // html += "<li>" + "Year Released: " + data[i].year + "</li>";
-                // html += "<li>" + "Directed By: " + data[i].director + "</li>";
-                // html += "<li>" + "Staring: " + data[i].actors + "</li>";
-                // html += "<li>" + "Genre: " + data[i].genre + "</li>";
+                html += "  <div class=\"card\" style=\"width: 18rem;\">"
+                html += "<img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">"
+                html += "<div class=\"card-body\">"
+                html += "<h5 class=\"card-title\">" + "Title: " + data[i].title + "</h5>";
+                html += " <p class=\"card-text\">" + data[i].rating + "</p>";
+                html += `<button class='delete-movie btn btn-primary' type='submit' data-id='${data[i].id}'>Delete</button>`;
+                html += "</div>";
+                html += "</div>"
             }
             $("#movies").html(html);
             // $("ul li").css("color", "white");
