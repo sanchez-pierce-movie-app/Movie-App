@@ -115,6 +115,17 @@ $(document).on("click",'.edit-movie',function (e) {
     console.log(url);
 })
 
+//******************** function for making input field hide *************************
+
+$(document).on("click",".edit-movie",function (e) {
+    e.preventDefault();
+    $("#input-fields").toggleClass("hide-add-movie");
+
+})
+
+
+
+
 //**************************** delete **********************************
 
 

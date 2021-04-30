@@ -8,3 +8,9 @@ body {
 li {
     color: white;
 }
+
+.hide-add-movie{
+    display: none;
+
+}
+
