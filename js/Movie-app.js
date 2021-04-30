@@ -1,30 +1,32 @@
 "use strict"
 
-const url = "https://psychedelic-aromatic-boysenberry.glitch.me/movies";
+const url = "https://gelatinous-careful-technosaurus.glitch.me/movies";
 
-$.ajax("https://psychedelic-aromatic-boysenberry.glitch.me/movies").done(function (data) {
+$.ajax("https://gelatinous-careful-technosaurus.glitch.me/movies").done(function (data) {
 
     $(document).ready(function () {
         setTimeout(function () {
             let html = "";
 
             for (let i = 0; i < data.length; i++) {
-                html += "<li>" + "Title: " + data[i].title + "</li>";
-                html += "<li>" + data[i].id + "</li>";
-                // html += `<form action='${url + "/" + data[i].id}'>`
-                html += `<button class='delete-movie' type='submit' data-id='${data[i].id}'>Delete</button>`;
-                // html += "</form>"
-                // html += "<li>" + "Year Released: " + data[i].year + "</li>";
-                // html += "<li>" + "Directed By: " + data[i].director + "</li>";
-                // html += "<li>" + "Staring: " + data[i].actors + "</li>";
-                // html += "<li>" + "Genre: " + data[i].genre + "</li>";
+                html += "  <div class=\"card\" style=\"width: 18rem;\">"
+                html += "<img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">"
+                html += "<div class=\"card-body\">"
+                html += "<h5 class=\"card-title\">" + "Title: " + data[i].title + "</h5>";
+                html += " <p class=\"card-text\">" + data[i].rating + "</p>";
+                html += `<button class='delete-movie btn btn-primary' type='submit' data-id='${data[i].id}'>Delete</button>`;
+                html += `<button class='edit-movie btn btn-primary' type='submit' data-id='${data[i].id}'>Edit</button>`;
+                html += "</div>";
+                html += "</div>"
             }
             $("#movies").html(html);
-        },)
+            // $("ul li").css("color", "white");
+        }, 1000)
     })
 
 
-    fetch("https://psychedelic-aromatic-boysenberry.glitch.me/movies").then(response => console.log(response))
+
+
 
 
     // //*********************** edit for loop ****************
@@ -82,29 +84,33 @@ $("#submit-movie").click(function (e) {
 });
 
 //******************************** PATCH *************************************
-$("#edit-movie").click(function (e) {
+$(document).on("click",'.edit-movie',function (e) {
     e.preventDefault();
 
     let movieInput = $("#movie-input").val();
-    let movieRating = $("#rating-input").val();
-
-    let patchMovie = {
-        title: movieInput,
-        rating: movieRating
-    };
+    let movieId = $(this).attr("data-id");
+    fetch("https://gelatinous-careful-technosaurus.glitch.me/movies/" + movieId).then(response => response.json().then(response => $("#movie-input").val(response.title)))
 
 
-    let options = {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(patchMovie),
-    };
 
-    fetch(url, options)
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
+
+    // let patchMovie = {
+    //     title: movieInput,
+    //     rating: movieRating
+    // };
+    //
+    //
+    // let options = {
+    //     method: "PUT",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(patchMovie, movieRating),
+    // };
+
+    // fetch(url, options)
+    //     .then(response => console.log(response))
+    //     .catch(error => console.log(error));
 
     console.log(url);
 })
