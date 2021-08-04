@@ -1,8 +1,10 @@
 
 body {
+    height:100%;
     background-image: url("../img/sean-benesh-6Nbo9Pn0yJA-unsplash.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+
+    background-size:cover;
 }
 
 li {
