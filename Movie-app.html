@@ -23,51 +23,45 @@
 
     <main>
 
-        <section id="movies" class="container row justify-content-center">
+        <section id="movies" class="container row d-flex justify-content-center">
             <em>Loading Movies&hellip;</em>
         </section>
 
         <div id="input-fields">
             <form>
-                <div class="input-group mb-3 mt-3" id="movie-input-card">
+                <div class="input-group mt-5" id="movie-input-card">
+
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-primary" type="button">Add Movie</button>
+                        <button id="submit-movie" class="btn btn-primary" type="button">Add Movie</button>
                     </div>
+
                     <input id="movie-input" type="text" class="form-control" placeholder="Add your movie here."
                            aria-label="" aria-describedby="basic-addon1">
-                </div>
 
-
-                <br>
-
-                <div class="input-group mb-3 mt-3" id="rating-input">
-                    <input type="text" class="form-control" placeholder="Rate your movie." aria-label=""
-                           aria-describedby="basic-addon1">
-                </div>
-
-
-                <div id="edit-input-fields">
-                    <div class="input-group mb-3 mt-3" id="edit-input-card">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary" type="button">Edit Movie</button>
-                        </div>
-                        <input id="edit-movie-input" type="text" class="form-control"
-                               placeholder="Edit your movie here."
-                               aria-label="" aria-describedby="basic-addon1">
-                    </div>
-
-
-                    <br>
-
-                    <div class="input-group mb-3 mt-3" id="edit-rating-input">
+                    <div class="input-group mb-3 mt-3" id="rating-input">
                         <input type="text" class="form-control" placeholder="Rate your movie." aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
-
                 </div>
-                <!--    <br>-->
-                <!--    <button type="submit" id="submit-movie">Add Movie</button>-->
-                <!--    <br>-->
+
+<!--                <div id="edit-input-fields">-->
+                    <div class="input-group mb-3 mt-5" id="edit-input-card">
+
+                        <div class="input-group-prepend">
+                            <button class="btn btn-primary" type="button">Edit Movie</button>
+                        </div>
+
+                        <input id="edit-movie-input" type="text" class="form-control"
+                               placeholder="Edit your movie here."
+                               aria-label="" aria-describedby="basic-addon1">
+
+                        <div class="input-group mb-3 mt-3" id="edit-rating-input">
+                        <input type="text" class="form-control" placeholder="Rate your movie." aria-label=""
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+<!--                </div>-->
 
 
                 <div class="container">

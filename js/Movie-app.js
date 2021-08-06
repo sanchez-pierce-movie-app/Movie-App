@@ -13,9 +13,13 @@ $.ajax("https://gelatinous-careful-technosaurus.glitch.me/movies").done(function
                 html += "<img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">"
                 html += "<div class=\"card-body\">"
                 html += "<h5 class=\"card-title\">" + "Title: " + data[i].title + "</h5>";
-                html += " <p class=\"card-text\">" + data[i].rating + "</p>";
-                html += `<button class='delete-movie btn btn-primary' type='submit' data-id='${data[i].id}'>Delete</button>`;
+                html += " <p class=\"card-text\">" +  "Rattings: " + data[i].rating + "</p>";
+                html += "<div class='container'>";
+                html += "<div class='row justify-content-around'>";
                 html += `<button class='edit-movie btn btn-primary' type='submit' data-id='${data[i].id}'>Edit</button>`;
+                html += `<button class='delete-movie btn btn-danger' type='submit' data-id='${data[i].id}'>Delete</button>`;
+                html += "</div>";
+                html += "</div>";
                 html += "</div>";
                 html += "</div>"
             }
@@ -24,28 +28,6 @@ $.ajax("https://gelatinous-careful-technosaurus.glitch.me/movies").done(function
         }, 1000)
     })
 
-
-
-
-
-
-    // //*********************** edit for loop ****************
-    // let html = "";
-    //
-    //     for (let i = 0; i < data.length; i++) {
-    //     html += "<option>" + "Title: " + data[i].title + "</option>";
-    //     }
-    //
-    // $("#edit-movies").html(html);
-
-    //************************* delete for loop ***********************
-    // let deleteHtml = "";
-    //
-    // for (let i = 0; i < data.length; i++) {
-    //     deleteHtml += "<option>" + "Title: " + data[i].title + "</option>";
-    // }
-    //
-    // $("#delete-movies").html(html);
 
 
 });
