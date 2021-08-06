@@ -9,7 +9,7 @@ $.ajax("https://gelatinous-careful-technosaurus.glitch.me/movies").done(function
             let html = "";
 
             for (let i = 0; i < data.length; i++) {
-                html += "  <div class=\"card\" style=\"width: 18rem;\">"
+                html += "  <div class='card mx-3' style=\"width: 18rem;\">"
                 html += "<img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">"
                 html += "<div class=\"card-body\">"
                 html += "<h5 class=\"card-title\">" + "Title: " + data[i].title + "</h5>";
